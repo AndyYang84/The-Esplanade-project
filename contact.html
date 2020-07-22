@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+    <title>Contact us</title>
+    <link rel="stylesheet" type="text/css" href="css/reuseable.css" />
+    <link rel="stylesheet" type="text/css" href="css/contact.css" />
+    <link rel="icon" href="images/sun.png" type="image/x-icon">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/1af70012cc.js"></script>
+    <script>
+        $(function() {
+            $('.navbar').load('reuseable/nav.html');
+        });
+    </script>
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+    </nav>
+
+
+
+    <div id="main">
+        <div class="container">
+
+            <div class="header">
+                <h1 id="top">Contact us</h1>
+                <h1>We love to hear from you</h1>
+                <h2>Please leave us a message using the form below.</h2>
+                <p>* are required fields</p>
+            </div>
+
+
+
+
+
+            <div class="contact_form">
+                <!--HTML Contact Form start-->
+                <form autocomplete="off" name="contactform" method="post" action="send_form_email.php">
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="fname">First Name *</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" name="first_name" placeholder="Your First name.." required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="lname">Last Name *</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" name="last_name" placeholder="Your Last name.." required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="email">Email Address *</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="email" name="email" placeholder="Your Email.." required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="email">Phone Number *</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" name="telephone" placeholder="Your Mobile..">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="lot">Lot #</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" name="lot" placeholder="Lot interested..">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="subject">Subject </label>
+                        </div>
+                        <div class="col-75">
+                            <textarea id="subject" name="subject" placeholder="Message Subject"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="msg">Message </label>
+                        </div>
+                        <div class="col-75">
+                            <textarea id="msg" name="comments" placeholder="Write your query.." style="height:200px" required></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <a id="submit">
+                            <input id="submission" type="submit" value="Submit">
+                        </a>
+                    </div>
+                </form>
+            </div>
+            <!--HTML Contact Form end-->
+
+
+
+
+        </div>
+    </div>
+    </div>
+
+
+
+
+    <div class="footer">
+        <h3 id="f-h3-1">Thank you for getting in touch.</h3>
+        <h3>We will respond to your query shortly.</h3>
+    </div>
+
+
+
+
+
+    <script>
+        //var pswd;
+        //const ps = 'esp2019';
+        //pswd = prompt('Enter Password to View the Page: ', "");
+        //if (pswd == ps) {
+        //    alert('Click "OK" to enter.')
+        //} else {
+        //    window.location = 'http://google.com';
+        // }
+    </script>
+
+
+
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

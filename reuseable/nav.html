@@ -1,0 +1,166 @@
+<style>
+    .dropdown-text {
+        text-align: left !important;
+        color: rgb(105, 102, 102) !important;
+    }
+    
+    .dropdown-text:hover {
+        color: black !important;
+        font-weight: bold;
+    }
+    /*For small screen*/
+    
+    #envelope {
+        color: white;
+        border-radius: 15px;
+        padding: 5px 15px !important;
+        margin-top: 8px !important;
+        background: linear-gradient(to right, rgb(7, 146, 246), rgb(17, 137, 223), rgb(28, 114, 175));
+        font: 3px !important;
+        float: right;
+        margin-right: 0.8rem;
+    }
+    
+    #sale {
+        color: white;
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 17px;
+        margin: 4px 2px;
+        -webkit-transition-duration: 0.3s;
+        /* Safari */
+        transition-duration: 0.25s;
+        cursor: pointer;
+        background-color: rgba(105, 105, 105, 0.712);
+        color: white;
+        border: 3px solid white;
+        margin-bottom: 1rem !important;
+        float: right;
+    }
+    /*For big screen*/
+    
+    #sale-big {
+        color: white;
+        border-radius: 15px;
+        padding: 0px 18px !important;
+        margin-top: 8px !important;
+        background: linear-gradient(to right, rgb(7, 146, 246), rgb(17, 137, 223), rgb(28, 114, 175));
+        float: right;
+        margin-right: 3rem;
+    }
+    
+    #sale:hover {
+        background-color: #F4F4F4;
+        color: black;
+    }
+    
+    @media(max-width: 1250px) {
+        #sale-big {
+            display: none;
+        }
+    }
+    
+    @media(max-width: 700px) {
+        .open-slide #sale {
+            display: block;
+        }
+    }
+    /***TO MAKE NAVBAR STICKY AT THE TOP****/
+    
+    #navbar {
+        z-index: 1000;
+    }
+    
+    .sticky {
+        position: fixed;
+        top: -8px !important;
+        width: 100%;
+        background-color: rgba(246, 251, 255, 0.938);
+        height: 73px;
+    }
+</style>
+
+
+
+<!--NAVIGATION BAR & SIDE-NAV-->
+<span class="open-slide" style="position: fixed; width: 100%; background-color:rgba(255, 255, 255, 0.856); height: 50px; z-index: 10;">
+        <a  id="open" onclick="openSideMenu()">
+            <svg width='30' height='30'>
+                <path d='M0,5 30 5' stroke=#333 stroke-width='5'/>
+                <path d='M0,14 30 14' stroke=#333 stroke-width='5'/>
+                <path d='M0,23 30 23' stroke=#333 stroke-width='5'/>
+            </svg>
+        </a>
+        <a  class="navbar-brand" href="../index.html">
+              <div class="logo-image-2">
+                    <img src="images/0792f6.png" width="130px"  class="img-fluid">
+              </div>
+        </a>
+        <a  data-aos="fade-left" id="envelope" href="../contact.html"><i class="fas fa-envelope"></i></a>
+    </span>
+
+
+
+
+<ul class="navbar-nav" id="navbar" data-aos="fade-down">
+    <li>
+        <a class="navbar-brand" href="../index.html">
+            <div class="logo-image">
+                <img src="images/0792f6.png" width="100%" class="img-fluid">
+            </div>
+        </a>
+    </li>
+    <li><a href="index.html">HOME</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+    <!--
+    <li><a  id="dropbtn" href="p1.html">STAGE 1</a></li>
+    <div class="dropdown-content" style="display: none;">
+        <a style=" background-color: rgb(255, 255, 255); color: rgba(3, 34, 92, 0.719); font-weight: bold; text-align: left; " href="../p1.html#iframe ">Web Map <i class="fas fa-search-plus "></i></a>
+        <a style="background-color: rgb(255, 255, 255); color: rgba(3, 34, 92, 0.719); font-weight: bold; text-align: left; " href="p1.html ">Overview <i class="far fa-compass "></i></a>
+        <a style="background-color: rgb(255, 255, 255); color: rgba(3, 34, 92, 0.719); font-weight: bold; text-align: left; " href="p1.html#lot-details ">Availability <i class="fas fa-map-marker-alt "></i></a>
+
+    </div>
+    <li><a href="dtm/index.html ">DTM</a></li>-->
+
+    <li><a id="sale-big " href="../contact.html ">CONTACT US</a></li>
+    <li><a id="sale" href="mailto:info@theesplanade.nz"><i class="fas fa-envelope"></i> info@theesplanade.nz</a></li>
+
+</ul>
+
+
+
+<!--SIDE SLIDER BAR WHEN SCREEN IS SMALL-->
+<div id="side-menu" class="side-nav " style="z-index: 100000 !important;">
+    <a class="btn-close " onclick="CloseSideMenu() ">&times;</a>
+    <a href="index.html ">HOME</a>
+    <a href="about.html ">ABOUT</a>
+    <!--
+    <a id="dropbtn-side " href="p1.html ">STAGE 1</a>
+    <div id="dropdown-content-side " style="display: none; ">
+    </div>-->
+    <a href="contact.html ">CONTACT US</a>
+    <a href="dtm/index.html ">DTM</a>
+
+</div>
+
+
+
+
+<script>
+    window.onscroll = function() {
+        myFunction()
+    };
+
+    var navbar = document.getElementById("navbar ");
+    var sticky = navbar.offsetTop;
+
+    function myFunction() {
+        if (window.pageYOffset >= sticky) {
+            navbar.classList.add("sticky ")
+
+        } else {
+            navbar.classList.remove("sticky ");
+        }
+    }
+</script>

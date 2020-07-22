@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+    <title>The Esplanade</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" type="text/css" href="css/reuseable.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/modal.css" />
+    <link rel="icon" href="images/sun.png" type="image/x-icon">
+
+    <script src="https://kit.fontawesome.com/1af70012cc.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(function() {
+            //loading reuseable navbar and side nav
+            $('.navbar').load('reuseable/nav.html');
+            //loading reuseable footer code
+            $('.f').load('reuseable/footer_front_page.html');
+        });
+    </script>
+</head>
+
+
+
+
+<body>
+    <!--navbar injection-->
+    <nav class="navbar">
+    </nav>
+    <!--navbar injection ends-->
+
+
+    <!--LOGO and Topside Cover-->
+    <section data-aos="fade-in" data-aos-duration="1200" class="intro">
+        <div class="inner">
+
+            <div class="content">
+                <h1 data-aos="zoom-in" data-aos-duration="1500"><img src="images/0792f6.png" width="90%" style="margin-top: -5px;" alt=""></h1>
+            </div>
+    </section>
+    <!--LOGO and Topside Cover ends-->
+
+
+
+
+    <div id="main">
+        <div class="container">
+            <h2 id="heading"><i style="color: rgb(178, 196, 252);" data-aos="fade-right" data-aos-duration="3000" class="fas fa-angle-double-right"></i>The Esplanade Development 2020</h2>
+
+            <div class="projects">
+                <div id="img-container">
+                    <a id="site_img" href="https://sketchfab.com/3d-models/whangarei-a115f876584047a99e32fb48d2c8eb7e" target="_blank"><img src="images/b1.jpg" data-aos="fade-right" width="100%" alt=""></a>
+                    <a href="https://sketchfab.com/3d-models/whangarei-a115f876584047a99e32fb48d2c8eb7e">
+                        <div id="img-modal">
+                            <h3><i class="far fa-hand-pointer"></i> Click to see 3D Model</h3>
+                        </div>
+                    </a>
+                </div>
+
+                <h3 data-aos="fade-up">
+                    <strong>The Esplanade Development</strong> is a new 33 lot subdivision located at Becondale Place Kamo, Whangarei. The development is broken into five stages with lots ranging from $225,000 – $440,000. The lots are flat, easy to build
+                    sections, mostly facing North, ready for you to build your beautiful home and enjoy the lifestyle The Esplanade has to offer.
+                </h3>
+            </div>
+
+
+            <div class="map-contact">
+                <!--1st Grid Element-->
+                <div class="m">
+                    <!--WEB MAP-->
+                    <h2 style=" color: white;">Becondale Place
+                        <a href="https://www.google.co.nz/maps/@-35.6728939,174.3082916,18.22z">View on Google Map</a>
+                    </h2>
+                    <iframe id="if" src="11-12-2019/index.html" frameborder="0" alt="Web site is not avaialable"></iframe>
+                    <iframe id="if-m" src="11-12-2019/index2.html" frameborder="0" alt="Web site is not avaialable"></iframe>
+                    <!--WEB MAP ENDS-->
+                </div>
+
+                <!--2nd Grid Element-->
+                <div data-aos="fade-left" data-aos-duration="900" class="contact">
+                    <h2><i class="fas fa-phone-volume"></i> Contact Us</h2>
+                    <div class="contact_form">
+                        <!--HTML Contact Form start-->
+                        <form autocomplete="off" name="contactform" method="post" action="send_form_email.php">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="fname" id="lb">First Name</label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="text" name="first_name" placeholder="Your First name.." required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="lname" id="lb">Last Name</label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="text" name="last_name" placeholder="Your Last name.." required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="e" id="lb"><i class="fas fa-envelope fa-2x"></i></label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="email" name="email" placeholder="Your Email.." required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="ph" id="lb"><i class="fas fa-phone-square fa-2x"></i></label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="text" name="telephone" placeholder="Your Mobile..">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="lot" id="lb">Lot# </label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="text" name="lot" placeholder="Lot# interested in..">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="sbj" id="lb">Subject</label>
+                                </div>
+                                <div class="col-75">
+                                    <textarea id="subject" name="subject" placeholder="Message Subject"></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="m" id="lb"><i class="fas fa-comment-dots fa-2x"></i></label>
+                                </div>
+                                <div class="col-75">
+                                    <textarea id="msg" name="comments" placeholder="Your query.." style="height:100px"></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <a id="submit">
+                                    <input id="submission" type="submit" value="Submit">
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                    <!--HTML Contact Form end-->
+                </div>
+            </div>
+
+
+
+            <!--Image Grid with description (img modal)-->
+            <div class="projects" id="p2">
+                <h3 data-aos="fade-up">
+                    <strong>Why Whangarei? </strong> <br> See our 'About' page' to explore more about Whangarei.
+                    <br>
+                    <a href="about.html"><i style="color: white;" id="arr" class="fas fa-8x fa-angle-double-right"></i></a>
+                </h3>
+
+                <div id="img-container">
+                    <a id="site_img" href="about.html" target="_blank"><img src="images/w4.jpg" data-aos="fade-left" width="100%" alt=""></a>
+                    <a href="about.html">
+                        <div id="img-modal2">
+                            <h3><i class="far fa-hand-pointer"></i> About Whangarei</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+
+            <!--Development stages dynamically-updating spreadsheet-->
+            <table>
+                <thead>
+                    <th id="table-head-title" colspan="4">
+                        <h2 style="color: black; margin: 0; margin-bottom: -10px;">Development Stages</h2><br>
+                        <h3 style="color: black">June - October, 2020</h3>
+                    </th>
+                </thead>
+                <thead>
+                    <tr>
+                        <th>Lots</th>
+                        <th>Availability</th>
+                        <th>Land area (sqm)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tbody class="labels">
+                        <tr>
+                            <td class="opener" colspan="3">
+                                <label for="stage1">STAGE 1 <span class="compl">- to be completed by June, 2020</span>  &ensp; <p id="s1-table-ava"></p> <i id="arrow" data-aos="fade-down" class="fas fa-sort-down" style="font-size: 2rem;"></i></label>
+                                <input type="checkbox" name="stage1" id="stage1" data-toggle="toggle">
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody class="hide" id="s1-content">
+                    </tbody>
+
+                    <tbody class="labels">
+                        <tr>
+                            <td class="opener" colspan="3">
+                                <label for="stage2">STAGE 2 <span class="compl">- to be completed by July, 2020</span> &ensp; <p id="s2-table-ava"></p> <i id="arrow" data-aos="fade-down" class="fas fa-sort-down" style="font-size: 2rem;"></i></label>
+                                <input type="checkbox" name="stage2" id="stage2" data-toggle="toggle">
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody class="hide" id="s2-content">
+                    </tbody>
+
+
+                    <tbody class="labels">
+                        <tr>
+                            <td class="opener" colspan="3">
+                                <label for="stage3">STAGE 3 <span class="compl">- to be completed by Aug, 2020</span> &ensp; <p id="s3-table-ava"></p> <i id="arrow" data-aos="fade-down" class="fas fa-sort-down" style="font-size: 2rem;"></i></label>
+                                <input type="checkbox" name="stage3" id="stage3" data-toggle="toggle">
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody class="hide" id="s3-content">
+                    </tbody>
+
+                    <tbody class="labels">
+                        <tr>
+                            <td class="opener" colspan="3">
+                                <label for="stage4">STAGE 4 <span class="compl">- to be completed by Sep, 2020</span> &ensp; <p id="s4-table-ava"></p> <i id="arrow" data-aos="fade-down" class="fas fa-sort-down" style="font-size: 2rem;"></i></label>
+                                <input type="checkbox" name="stage4" id="stage4" data-toggle="toggle">
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody class="hide" id="s4-content">
+                    </tbody>
+
+                    <tbody class="labels">
+                        <tr>
+                            <td class="opener" colspan="3">
+                                <label for="stage5">STAGE 5 <span class="compl">- to be completed by Oct, 2020</span> &ensp; <p id="s5-table-ava"></p> <i id="arrow" data-aos="fade-down" class="fas fa-sort-down" style="font-size: 2rem;"></i></label>
+                                <input type="checkbox" name="stage5" id="stage5" data-toggle="toggle">
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody class="hide" id="s5-content">
+                        <td colspan="4">Stage 5 Not Available for now.<br> Please <a href="contact.html">contact us</a> for more details.</td>
+                    </tbody>
+                </tbody>
+            </table>
+
+        </div>
+
+
+        <!--GALLERY FOR DEVELOPMENT PROJECTS
+        <div class="wrapper">
+            <div data-aos="fade-right" class="parent" onclick="">
+                <div class="child bg-one">
+                    <a class="sp" href="p1.html">Becondale Place</a>
+                    <h3>Stage 1 Development</h3>
+                </div>
+            </div>
+
+            <div data-aos="fade-left" class="parent right" onclick="">
+                <div class="child bg-two">
+                    <a class="sp" href="p2.html">Gillingham Road</a>
+                    <h3>Stage 2 Coming Soon</h3>
+                </div>
+            </div>
+        </div>
+        -->
+
+
+
+    </div>
+    </div>
+
+
+    <!--FOOTER & BACK TO HOME-->
+    <div class=" f ">
+    </div>
+
+
+
+    <!--------* * * A L L   H T M L   C O D E S   E N D    H E R E * * * -------->
+    <script>
+        $(function() {
+            $('.wrapper_1').click(function() {
+                $('.wrapper_1').each(function() {
+                    $(this).css('z-index', 1000);
+                });
+                $(this).css('z-index', 10000);
+                $(this).toggleClass('open');
+            })
+        })
+    </script>
+
+
+
+    <script>
+        $(".projects:not('#p2')").hover(function() {
+            $("#img-modal h3").css("display", "block");
+            $("#img-modal").css("height", "100px");
+            $("#img-modal h3").css("color", "rgb(255, 255, 255, 1)");
+        }, function() {
+            $("#img-modal h3").css("display", "none");
+            $("#img-modal").css("height", "0px");
+        });
+
+
+        //On hover: for p2 section * * * * * * * * * * * * * * * * * *
+        $("#p2").hover(function() {
+            $("#img-modal2 h3").css("display", "block");
+            $("#img-modal2").css("height", "100px");
+            $("#img-modal2 h3").css("color", "rgb(255, 255, 255, 1)");
+            $("#arr").css("transition", ".6s");
+            $("#arr").css("margin-left", "5rem");
+            $("#arr").css("opacity", "0.3");
+        }, function() {
+            $("#img-modal2 h3").css("display", "none");
+            $("#img-modal2").css("height", "0px");
+            $("#arr").css("transition", ".6s");
+            $("#arr").css("margin-left", "0rem");
+            $("#arr").css("opacity", "1");
+        });
+    </script>
+
+
+    <script>
+        $('[data-toggle="toggle"]').change(function() {
+            $(this).parents().next('.hide').toggle();
+        });
+    </script>
+
+
+
+
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
+    <script type='text/javascript'>
+        //document.getElementsByTagName('td')[0].style.backgroundColor = 'yellow';
+
+        $(".opener").hover(function() {
+            $(this).css("background-color", "rgb(7,146,246)");
+        }, function() {
+            $(this).css("background-color", "#7f8380");
+        });
+
+        //Close out stages 2,3,4,5
+        document.getElementById('s2-content').style.display = 'none';
+        document.getElementById('s3-content').style.display = 'none';
+        document.getElementById('s4-content').style.display = 'none';
+        document.getElementById('s5-content').style.display = 'none';
+
+        var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1bTsL6d1TVvC8OP3FuppfhqSce8CfKfyEWhtXLLaA3-Q/edit?usp=sharing';
+
+
+        function init() {
+            Tabletop.init({
+                key: publicSpreadsheetUrl,
+                callback: showInfo,
+                //Call-back function: to execute actions after JSON data has been retrieved
+                simpleSheet: true
+            })
+        }
+
+        function showInfo(data, tabletop) {
+            //alert('Successfully processed!')
+            console.log(tabletop);
+            console.log(data);
+
+            var count = []; // TO STORE THE COUNTED TOTAL AVAILABLE LOTS FOR EACH Stage
+            //Counts for each Stage's availability
+            var stages = [1, 2, 3, 4, 5]; //Five Stages
+            stages.forEach(function(s) { //For each stage
+                var count_for_each_stage = 0; //declare count=0 for each stage
+
+                data.forEach(function(row) {
+                    if (row.STAGE == s.toString() && row.AVA == 'Y') {
+                        count_for_each_stage++; //If stage matches and AVA status (availability)= 'Y' (yes), then count it.
+                    }
+                })
+                count.push(count_for_each_stage); //push() -->store/append/add data into array
+            })
+            console.log(count); // Just confirm data test
+
+
+            //Data Processing and Displaying on HTML
+            data.forEach(function(r) {
+                switch (r.STAGE) {
+                    case '1':
+                        display('1');
+                        break;
+                    case '2':
+                        display('2');
+                        break;
+                    case '3':
+                        display('3');
+                        break;
+                    case '4':
+                        display('4');
+                        break;
+                }
+
+
+                function display(stage) {
+                    var tbody = document.getElementById('s' + stage + '-content');
+                    var row = document.createElement("tr");
+                    var col1 = document.createElement("td");
+                    col1.textContent = r.LOT;
+                    var col2 = document.createElement("td");
+                    if (r.AVA == 'Y') {
+                        col2.textContent = 'Available';
+                        col2.style.color = 'darkgreen';
+                        col2.style.backgroundColor = 'rgb(0,255,0,0.3)';
+                    }
+                    if (r.AVA == 'N') {
+                        col2.textContent = 'SOLD';
+                        col2.style.color = 'red';
+                        col2.style.backgroundColor = 'pink';
+                    }
+                    var col3 = document.createElement("td");
+                    col3.textContent = r.AREA;
+
+                    row.appendChild(col1);
+                    row.appendChild(col2);
+                    row.appendChild(col3);
+                    //Put the created html element <tr> into <tbody>
+                    tbody.appendChild(row);
+                }
+            });
+            //Available lots for table
+            for (i = 0; i < 5; i++) {
+                document.getElementById('s' + (i + 1) + '-table-ava').innerHTML = count[i] + ' Available';
+            }
+
+        }
+
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+
+
+
+
+
+
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js "></script>
+    <script>
+        AOS.init({
+            offset: 50
+        });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js "></script>
+    <script src="js/main.js "></script>
+</body>
+
+</html>

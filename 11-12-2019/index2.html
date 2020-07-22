@@ -1,0 +1,940 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="css/leaflet.css">
+    <link rel="stylesheet" href="css/qgis2web.css">
+    <link rel="stylesheet" href="css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="css/leaflet-measure.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Nunito|Quicksand&display=swap');
+        html,
+        body,
+        #map {
+            font-family: 'Quicksand', sans-serif;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .slider {
+            height: 100%;
+            width: 0px;
+            position: fixed;
+            z-index: 10000;
+            top: 0;
+            left: 0;
+            background-color: rgba(255, 255, 255, 0.911);
+            padding-left: 10px;
+            padding-top: 20px;
+            overflow-x: hidden;
+            transition: 0.2s;
+        }
+        
+        .slider a {
+            padding: 5px 5px 5px 5px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #333;
+            display: block;
+            transition: 0.2s;
+        }
+        
+        .slider .btn-close {
+            position: absolute;
+            top: 0;
+            right: 15px;
+            font-size: 20px;
+            padding: 0px 10px;
+            margin-top: 5px;
+        }
+        
+        .slider a:hover {
+            background-color: white;
+            color: #0792f6;
+        }
+        
+        .slider .btn-close:hover {
+            font-weight: bolder;
+        }
+        
+        .slider #content {
+            color: #333;
+        }
+        
+        .slider #content .more-info {
+            background-color: rgb(7, 146, 246, 0.7);
+            color: white;
+            font-size: 1.0rem;
+            width: 50%;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .slider #content .more-info:hover {
+            background-color: rgb(7, 146, 246);
+            border: 1px solid #0792f6;
+        }
+        
+        h3 {
+            width: fit-content !important;
+            padding: 1px 4px !important;
+            border-radius: 5px;
+        }
+        
+        h5 {
+            border: 1.5px solid #333;
+            border-radius: 5px;
+            width: fit-content !important;
+            padding: 1px 8px;
+            background-color: rgba(255, 255, 255, 1);
+        }
+        
+        @media (min-width: 900px) {
+            .slider #content .more-info:hover {
+                width: 52%;
+                background-color: #0095ff;
+            }
+        }
+        
+        @media (max-width: 1350px) {
+            .slider #content .more-info {
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 800px) {
+            .slider #content {
+                margin-top: 1.5rem;
+            }
+            .slider #content h3 {
+                font-size: 1.0rem !important;
+            }
+            .slider #content .more-info {
+                font-size: 0.8rem;
+                width: 60%;
+            }
+            .slider #content .more-info:hover {
+                width: 62%;
+            }
+        }
+    </style>
+    <title>Esplanade Interactive Map</title>
+</head>
+
+<body>
+    <div id="map">
+    </div>
+
+
+    <div id="slider" class="slider">
+        <a class="btn-close" onclick="CloseSideMenu()">&times; Close</a>
+        <div id="content"></div>
+    </div>
+
+
+    <script src="js/qgis2web_expressions.js"></script>
+    <script src="js/leaflet.js"></script>
+    <script src="js/leaflet.rotatedMarker.js"></script>
+    <script src="js/leaflet.pattern.js"></script>
+    <script src="js/leaflet-hash.js"></script>
+    <script src="js/Autolinker.min.js"></script>
+    <script src="js/rbush.min.js"></script>
+    <script src="js/labelgun.min.js"></script>
+    <script src="js/labels.js"></script>
+    <script src="js/leaflet-measure.js"></script>
+    <script src="data/LotLayout_2.js"></script>
+    <script src="data/RD_3.js"></script>
+    <script src="data/Stage1_4.js"></script>
+    <script src="data/Stage2_5.js"></script>
+    <script src="data/Stage3_6.js"></script>
+    <script src="data/Stage4_7.js"></script>
+    <script src="data/Stage5_8.js"></script>
+    <script src="data/Framing_9.js"></script>
+    <script src="data/Lot_number_10.js"></script>
+    <script src="data/Road_11.js"></script>
+    <script>
+        var highlightLayer;
+
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+
+            if (e.target.feature.geometry.type === 'LineString') {
+                highlightLayer.setStyle({
+                    color: '#ffff00',
+                });
+            } else {
+                highlightLayer.setStyle({
+                    fillColor: '#ffff00',
+                    fillOpacity: 1
+                });
+            }
+        }
+        var map = L.map('map', {
+            zoomControl: true,
+            maxZoom: 28,
+            scrollWheelZoom: false, //fasle- to make scrollWheelZoom unavailable****
+            minZoom: 3
+        }).fitBounds([
+            [-35.671999, 174.307931],
+            [-35.673180, 174.307999000]
+        ]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+            .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+            .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+
+        function setBounds() {}
+        var layer_GooglemapHybrid_0 = L.tileLayer('http://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}', {
+            opacity: 1.0,
+            attribution: '',
+        });
+        layer_GooglemapHybrid_0;
+        map.addLayer(layer_GooglemapHybrid_0);
+        var img_compressed_aerial_modified_1 = 'data/compressed_aerial_modified_1.png';
+        var img_bounds_compressed_aerial_modified_1 = [
+            [-35.674541666982954, 174.29806518008726],
+            [-35.66665276614948, 174.31198657686693]
+        ];
+        var layer_compressed_aerial_modified_1 = new L.imageOverlay(img_compressed_aerial_modified_1, img_bounds_compressed_aerial_modified_1);
+        bounds_group.addLayer(layer_compressed_aerial_modified_1);
+        map.addLayer(layer_compressed_aerial_modified_1);
+
+        function pop_LotLayout_2(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_LotLayout_2_0() {
+            return {
+                pane: 'pane_LotLayout_2',
+                opacity: 1,
+                color: 'rgba(227,249,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+            }
+        }
+        map.createPane('pane_LotLayout_2');
+        map.getPane('pane_LotLayout_2').style.zIndex = 402;
+        map.getPane('pane_LotLayout_2').style['mix-blend-mode'] = 'normal';
+        var layer_LotLayout_2 = new L.geoJson(json_LotLayout_2, {
+            attribution: '',
+            pane: 'pane_LotLayout_2',
+            onEachFeature: pop_LotLayout_2,
+            style: style_LotLayout_2_0,
+        });
+        bounds_group.addLayer(layer_LotLayout_2);
+        map.addLayer(layer_LotLayout_2);
+
+        function pop_RD_3(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_RD_3_0() {
+            return {
+                pane: 'pane_RD_3',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+            }
+        }
+        map.createPane('pane_RD_3');
+        map.getPane('pane_RD_3').style.zIndex = 403;
+        map.getPane('pane_RD_3').style['mix-blend-mode'] = 'normal';
+        var layer_RD_3 = new L.geoJson(json_RD_3, {
+            attribution: '',
+            pane: 'pane_RD_3',
+            onEachFeature: pop_RD_3,
+            style: style_RD_3_0,
+        });
+        bounds_group.addLayer(layer_RD_3);
+        map.addLayer(layer_RD_3);
+
+        function pop_Stage1_4(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+
+            function popup() {
+                var lot = (feature.properties['Lot'] !== null ? Autolinker.link(String(feature.properties['Lot'])) : '');
+                var stage = "Stage 1";
+                var larea = (feature.properties['Area']);
+
+
+                //Actual call of function
+                info(lot, stage, larea);
+
+                function info(lot, stage, larea) {
+
+                    function myFunction(x) {
+                        if (x.matches) { // If media query matches
+                            //if Smaller than 
+                            document.getElementById('slider').style.width = '60%';
+                        } else {
+                            //if Bigger than
+                            document.getElementById('slider').style.width = '30%';
+                        }
+                    }
+
+                    var x = window.matchMedia("(max-width: 850px)")
+                    myFunction(x) // Call listener function at run time
+                    x.addListener(myFunction) // Attach listener function on state changes
+
+
+                    document.getElementById('slider').style.zIndex = '1000';
+                    document.getElementById('content').innerHTML = '<h3 style="background-color: rgba(104,232,0);">Development: ' + stage + '</h3>';
+                    document.getElementById('content').innerHTML += '<h3>Lot No. ' + lot + '</h3>';
+                    document.getElementById('content').innerHTML += '<h3>Land Area: ' + larea + ' m<sup>2</sup></h3>';
+                    document.getElementById('content').innerHTML += '<h5>Completed by June 2020 </h5>';
+
+                    //document.getElementById('content').innerHTML += popupContent; 
+                }
+
+            }
+
+            layer.bindPopup(popup, {
+                maxHeight: 400
+            });
+        }
+
+        function style_Stage1_4_0() {
+            return {
+                pane: 'pane_Stage1_4',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(104,232,0,0.4980392156862745)',
+            }
+        }
+        map.createPane('pane_Stage1_4');
+        map.getPane('pane_Stage1_4').style.zIndex = 404;
+        map.getPane('pane_Stage1_4').style['mix-blend-mode'] = 'normal';
+        var layer_Stage1_4 = new L.geoJson(json_Stage1_4, {
+            attribution: '',
+            pane: 'pane_Stage1_4',
+            onEachFeature: pop_Stage1_4,
+            style: style_Stage1_4_0,
+        });
+        bounds_group.addLayer(layer_Stage1_4);
+        map.addLayer(layer_Stage1_4);
+
+        function pop_Stage2_5(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+
+            function popup() {
+                var lot = (feature.properties['Lot'] !== null ? Autolinker.link(String(feature.properties['Lot'])) : '');
+                var stage = "Stage 2";
+                var larea = (feature.properties['Area']);
+
+
+                //Actual call of function
+                info(lot, stage, larea);
+
+                function info(lot, stage, larea) {
+
+                    function myFunction(x) {
+                        if (x.matches) { // If media query matches
+                            //if Smaller than 
+                            document.getElementById('slider').style.width = '60%';
+                        } else {
+                            //if Bigger than
+                            document.getElementById('slider').style.width = '30%';
+                        }
+                    }
+
+                    var x = window.matchMedia("(max-width: 850px)")
+                    myFunction(x) // Call listener function at run time
+                    x.addListener(myFunction) // Attach listener function on state changes
+
+
+                    document.getElementById('slider').style.zIndex = '1000';
+                    document.getElementById('content').innerHTML = '<h3 style="background-color: rgba(0,0,0, 0.8); color: white;">Development: ' + stage + '</h3>';
+                    document.getElementById('content').innerHTML += '<h3>Lot No. ' + lot + '</h3>';
+                    document.getElementById('content').innerHTML += '<h3>Land Area: ' + larea + ' m<sup>2</sup></h3>';
+                    document.getElementById('content').innerHTML += '<h5>Completed by July 2020 </h5>';
+                }
+            }
+
+            layer.bindPopup(popup, {
+                maxHeight: 400
+            });
+        }
+
+        function style_Stage2_5_0() {
+            return {
+                pane: 'pane_Stage2_5',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,0,0,0.5058823529411764)',
+            }
+        }
+        map.createPane('pane_Stage2_5');
+        map.getPane('pane_Stage2_5').style.zIndex = 405;
+        map.getPane('pane_Stage2_5').style['mix-blend-mode'] = 'normal';
+        var layer_Stage2_5 = new L.geoJson(json_Stage2_5, {
+            attribution: '',
+            pane: 'pane_Stage2_5',
+            onEachFeature: pop_Stage2_5,
+            style: style_Stage2_5_0,
+        });
+        bounds_group.addLayer(layer_Stage2_5);
+        map.addLayer(layer_Stage2_5);
+
+        function pop_Stage3_6(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+
+            function popup() {
+                var lot = (feature.properties['Lot'] !== null ? Autolinker.link(String(feature.properties['Lot'])) : '');
+                var stage = "Stage 3";
+                var larea = (feature.properties['Area']);
+
+
+                //Actual call of function
+                info(lot, stage, larea);
+
+                function info(lot, stage, larea) {
+
+                    function myFunction(x) {
+                        if (x.matches) { // If media query matches
+                            //if Smaller than 
+                            document.getElementById('slider').style.width = '60%';
+                        } else {
+                            //if Bigger than
+                            document.getElementById('slider').style.width = '30%';
+                        }
+                    }
+
+                    var x = window.matchMedia("(max-width: 850px)")
+                    myFunction(x) // Call listener function at run time
+                    x.addListener(myFunction) // Attach listener function on state changes
+
+
+                    document.getElementById('slider').style.zIndex = '1000';
+                    document.getElementById('content').innerHTML = '<h3 style="background-color: rgba(29,85,253,0.8); color: white;">Development: ' + stage + '</h3>';
+                    document.getElementById('content').innerHTML += '<h3>Lot No. ' + lot + '</h3>';
+                    document.getElementById('content').innerHTML += '<h3>Land Area: ' + larea + ' m<sup>2</sup></h3>';
+                    document.getElementById('content').innerHTML += '<h5>Completed by Aug 2020 </h5>';
+                }
+            }
+
+            layer.bindPopup(popup, {
+                maxHeight: 400
+            });
+        }
+
+        function style_Stage3_6_0() {
+            return {
+                pane: 'pane_Stage3_6',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(29,85,253,0.4980392156862745)',
+            }
+        }
+        map.createPane('pane_Stage3_6');
+        map.getPane('pane_Stage3_6').style.zIndex = 406;
+        map.getPane('pane_Stage3_6').style['mix-blend-mode'] = 'normal';
+        var layer_Stage3_6 = new L.geoJson(json_Stage3_6, {
+            attribution: '',
+            pane: 'pane_Stage3_6',
+            onEachFeature: pop_Stage3_6,
+            style: style_Stage3_6_0,
+        });
+        bounds_group.addLayer(layer_Stage3_6);
+        map.addLayer(layer_Stage3_6);
+
+        function pop_Stage4_7(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+
+            function popup() {
+                var lot = (feature.properties['Lot'] !== null ? Autolinker.link(String(feature.properties['Lot'])) : '');
+                var stage = "Stage 4";
+                var larea = (feature.properties['Area']);
+
+
+                //Actual call of function
+                info(lot, stage, larea);
+
+                function info(lot, stage, larea) {
+
+                    function myFunction(x) {
+                        if (x.matches) { // If media query matches
+                            //if Smaller than 
+                            document.getElementById('slider').style.width = '60%';
+                        } else {
+                            //if Bigger than
+                            document.getElementById('slider').style.width = '30%';
+                        }
+                    }
+
+                    var x = window.matchMedia("(max-width: 850px)")
+                    myFunction(x) // Call listener function at run time
+                    x.addListener(myFunction) // Attach listener function on state changes
+
+
+                    document.getElementById('slider').style.zIndex = '1000';
+                    document.getElementById('content').innerHTML = '<h3 style="background-color: rgba(253,79,25, 0.8); color: white;">Development: ' + stage + '</h3>';
+                    document.getElementById('content').innerHTML += '<h3>Lot No. ' + lot + '</h3>';
+                    document.getElementById('content').innerHTML += '<h3>Land Area: ' + larea + ' m<sup>2</sup></h3>';
+                    document.getElementById('content').innerHTML += '<h5>Completed by Sep 2020 </h5>';
+                }
+            }
+
+            layer.bindPopup(popup, {
+                maxHeight: 400
+            });
+        }
+
+        function style_Stage4_7_0() {
+            return {
+                pane: 'pane_Stage4_7',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(253,79,25,0.4980392156862745)',
+            }
+        }
+        map.createPane('pane_Stage4_7');
+        map.getPane('pane_Stage4_7').style.zIndex = 407;
+        map.getPane('pane_Stage4_7').style['mix-blend-mode'] = 'normal';
+        var layer_Stage4_7 = new L.geoJson(json_Stage4_7, {
+            attribution: '',
+            pane: 'pane_Stage4_7',
+            onEachFeature: pop_Stage4_7,
+            style: style_Stage4_7_0,
+        });
+        bounds_group.addLayer(layer_Stage4_7);
+        map.addLayer(layer_Stage4_7);
+
+        function pop_Stage5_8(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th>' + 'TBA' + '</th>\
+                    </tr>\
+                    <tr>\
+                        <td>' + 'Stage5 is not available now.' + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {
+                maxHeight: 400
+            });
+        }
+
+        function style_Stage5_8_0() {
+            return {
+                pane: 'pane_Stage5_8',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(127,29,255,0.4980392156862745)',
+            }
+        }
+        map.createPane('pane_Stage5_8');
+        map.getPane('pane_Stage5_8').style.zIndex = 408;
+        map.getPane('pane_Stage5_8').style['mix-blend-mode'] = 'normal';
+        var layer_Stage5_8 = new L.geoJson(json_Stage5_8, {
+            attribution: '',
+            pane: 'pane_Stage5_8',
+            onEachFeature: pop_Stage5_8,
+            style: style_Stage5_8_0,
+        });
+        bounds_group.addLayer(layer_Stage5_8);
+        map.addLayer(layer_Stage5_8);
+
+        function pop_Framing_9(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Framing_9_0() {
+            return {
+                pane: 'pane_Framing_9',
+                opacity: 1,
+                color: 'rgba(246,255,249,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+            }
+        }
+        map.createPane('pane_Framing_9');
+        map.getPane('pane_Framing_9').style.zIndex = 409;
+        map.getPane('pane_Framing_9').style['mix-blend-mode'] = 'normal';
+        var layer_Framing_9 = new L.geoJson(json_Framing_9, {
+            attribution: '',
+            pane: 'pane_Framing_9',
+            onEachFeature: pop_Framing_9,
+            style: style_Framing_9_0,
+        });
+        bounds_group.addLayer(layer_Framing_9);
+
+        function pop_Lot_number_10(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+
+        }
+
+        function style_Lot_number_10_0() {
+            return {
+                pane: 'pane_Lot_number_10',
+                opacity: 1,
+                color: 'rgba(255,246,247,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+            }
+        }
+        map.createPane('pane_Lot_number_10');
+        map.getPane('pane_Lot_number_10').style.zIndex = 410;
+        map.getPane('pane_Lot_number_10').style['mix-blend-mode'] = 'normal';
+        var layer_Lot_number_10 = new L.geoJson(json_Lot_number_10, {
+            attribution: '',
+            pane: 'pane_Lot_number_10',
+            onEachFeature: pop_Lot_number_10,
+            style: style_Lot_number_10_0,
+        });
+        bounds_group.addLayer(layer_Lot_number_10);
+
+        function pop_Road_11(feature, layer) {
+            layer.on({
+
+            });
+        }
+
+        function style_Road_11_0() {
+            return {
+                pane: 'pane_Road_11',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(217,216,214,0.6627450980392157)',
+            }
+        }
+        map.createPane('pane_Road_11');
+        map.getPane('pane_Road_11').style.zIndex = 411;
+        map.getPane('pane_Road_11').style['mix-blend-mode'] = 'normal';
+        var layer_Road_11 = new L.geoJson(json_Road_11, {
+            attribution: '',
+            pane: 'pane_Road_11',
+            onEachFeature: pop_Road_11,
+            style: style_Road_11_0,
+        });
+        bounds_group.addLayer(layer_Road_11);
+        map.addLayer(layer_Road_11);
+        var baseMaps = {};
+        L.control.layers(baseMaps, {
+            '<img src="legend/Road_11.png" /> Road': layer_Road_11,
+            '<img src="legend/Lot_number_10.png" /> Lot_number': layer_Lot_number_10,
+            '<img src="legend/Framing_9.png" /> Framing': layer_Framing_9,
+            '<img src="legend/Stage5_8.png" /> Stage5': layer_Stage5_8,
+            '<img src="legend/Stage4_7.png" /> Stage4': layer_Stage4_7,
+            '<img src="legend/Stage3_6.png" /> Stage3': layer_Stage3_6,
+            '<img src="legend/Stage2_5.png" /> Stage2': layer_Stage2_5,
+            '<img src="legend/Stage1_4.png" /> Stage1': layer_Stage1_4,
+            '<img src="legend/RD_3.png" /> RD': layer_RD_3,
+            '<img src="legend/LotLayout_2.png" /> Lot Layout': layer_LotLayout_2,
+            "compressed_aerial_modified": layer_compressed_aerial_modified_1,
+            "Google map (Hybrid)": layer_GooglemapHybrid_0,
+        }).addTo(map);
+        map.on("zoomend", function() {
+
+            if (map.hasLayer(layer_Stage1_4)) {
+                if (map.getZoom() <= 18 && map.getZoom() >= 19) {
+                    layer_Stage1_4.eachLayer(function(layer) {
+                        layer.openTooltip();
+                    });
+                } else {
+                    layer_Stage1_4.eachLayer(function(layer) {
+                        layer.closeTooltip();
+                    });
+                }
+            }
+            if (map.hasLayer(layer_Stage2_5)) {
+                if (map.getZoom() <= 18 && map.getZoom() >= 19) {
+                    layer_Stage2_5.eachLayer(function(layer) {
+                        layer.openTooltip();
+                    });
+                } else {
+                    layer_Stage2_5.eachLayer(function(layer) {
+                        layer.closeTooltip();
+                    });
+                }
+            }
+            if (map.hasLayer(layer_Stage3_6)) {
+                if (map.getZoom() <= 18 && map.getZoom() >= 19) {
+                    layer_Stage3_6.eachLayer(function(layer) {
+                        layer.openTooltip();
+                    });
+                } else {
+                    layer_Stage3_6.eachLayer(function(layer) {
+                        layer.closeTooltip();
+                    });
+                }
+            }
+            if (map.hasLayer(layer_Stage4_7)) {
+                if (map.getZoom() <= 18 && map.getZoom() >= 19) {
+                    layer_Stage4_7.eachLayer(function(layer) {
+                        layer.openTooltip();
+                    });
+                } else {
+                    layer_Stage4_7.eachLayer(function(layer) {
+                        layer.closeTooltip();
+                    });
+                }
+            }
+        });
+        setBounds();
+        var i = 0;
+        layer_Stage1_4.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Lot'] !== null ? String('<div style="color: #ffffff; font-size: 15pt; font-weight: bold; font-family: \'Segoe UI Black\', sans-serif;">' + layer.feature.properties['Lot']) + '</div>' : ''), {
+                permanent: true,
+                offset: [-0, -16],
+                className: 'css_Stage1_4'
+            });
+            labels.push(layer);
+            totalMarkers += 1;
+            layer.added = true;
+            addLabel(layer, i);
+            i++;
+        });
+        var i = 0;
+        layer_Stage2_5.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Lot'] !== null ? String('<div style="color: #f6fff9; font-size: 15pt; font-weight: bold; font-family: \'Segoe UI Black\', sans-serif;">' + layer.feature.properties['Lot']) + '</div>' : ''), {
+                permanent: true,
+                offset: [-0, -16],
+                className: 'css_Stage2_5'
+            });
+            labels.push(layer);
+            totalMarkers += 1;
+            layer.added = true;
+            addLabel(layer, i);
+            i++;
+        });
+        var i = 0;
+        layer_Stage3_6.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Lot'] !== null ? String('<div style="color: #ffffff; font-size: 15pt; font-weight: bold; font-family: \'Segoe UI Black\', sans-serif;">' + layer.feature.properties['Lot']) + '</div>' : ''), {
+                permanent: true,
+                offset: [-0, -16],
+                className: 'css_Stage3_6'
+            });
+            labels.push(layer);
+            totalMarkers += 1;
+            layer.added = true;
+            addLabel(layer, i);
+            i++;
+        });
+        var i = 0;
+        layer_Stage4_7.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Lot'] !== null ? String('<div style="color: #ffffff; font-size: 15pt; font-weight: bold; font-family: \'Segoe UI Black\', sans-serif;">' + layer.feature.properties['Lot']) + '</div>' : ''), {
+                permanent: true,
+                offset: [-0, -16],
+                className: 'css_Stage4_7'
+            });
+            labels.push(layer);
+            totalMarkers += 1;
+            layer.added = true;
+            addLabel(layer, i);
+            i++;
+        });
+        if (map.hasLayer(layer_Stage1_4)) {
+            if (map.getZoom() <= 18 && map.getZoom() >= 19) {
+                layer_Stage1_4.eachLayer(function(layer) {
+                    layer.openTooltip();
+                });
+            } else {
+                layer_Stage1_4.eachLayer(function(layer) {
+                    layer.closeTooltip();
+                });
+            }
+        }
+        if (map.hasLayer(layer_Stage2_5)) {
+            if (map.getZoom() <= 18 && map.getZoom() >= 19) {
+                layer_Stage2_5.eachLayer(function(layer) {
+                    layer.openTooltip();
+                });
+            } else {
+                layer_Stage2_5.eachLayer(function(layer) {
+                    layer.closeTooltip();
+                });
+            }
+        }
+        if (map.hasLayer(layer_Stage3_6)) {
+            if (map.getZoom() <= 18 && map.getZoom() >= 19) {
+                layer_Stage3_6.eachLayer(function(layer) {
+                    layer.openTooltip();
+                });
+            } else {
+                layer_Stage3_6.eachLayer(function(layer) {
+                    layer.closeTooltip();
+                });
+            }
+        }
+        if (map.hasLayer(layer_Stage4_7)) {
+            if (map.getZoom() <= 18 && map.getZoom() >= 19) {
+                layer_Stage4_7.eachLayer(function(layer) {
+                    layer.openTooltip();
+                });
+            } else {
+                layer_Stage4_7.eachLayer(function(layer) {
+                    layer.closeTooltip();
+                });
+            }
+        }
+        L.ImageOverlay.include({
+            getBounds: function() {
+                return this._bounds;
+            }
+        });
+        resetLabels([layer_Stage1_4, layer_Stage2_5, layer_Stage3_6, layer_Stage4_7]);
+        map.on("zoomend", function() {
+            resetLabels([layer_Stage1_4, layer_Stage2_5, layer_Stage3_6, layer_Stage4_7]);
+        });
+        map.on("layeradd", function() {
+            resetLabels([layer_Stage1_4, layer_Stage2_5, layer_Stage3_6, layer_Stage4_7]);
+        });
+        map.on("layerremove", function() {
+            resetLabels([layer_Stage1_4, layer_Stage2_5, layer_Stage3_6, layer_Stage4_7]);
+        });
+    </script>
+
+    <script>
+        function CloseSideMenu() {
+            document.getElementById('slider').style.width = '0px';
+        }
+    </script>
+</body>
+
+</html>

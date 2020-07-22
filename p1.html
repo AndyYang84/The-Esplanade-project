@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+    <title>Stage 1</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" type="text/css" href="css/reuseable.css" />
+    <link rel="stylesheet" type="text/css" href="css/p1.css" />
+    <link rel="stylesheet" type="text/css" href="css/modal.css" />
+    <link rel="icon" href="images/sun.png" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/1af70012cc.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.css" integrity="sha256-m39lFK2CHIUlniszCoMSPlXDCTrGZm7xIQj+MVHxylg=" crossorigin="anonymous" />
+
+    <script>
+        $(function() {
+            $('.navbar').load('reuseable/nav.html');
+            $('.f').load('reuseable/footer.html');
+        });
+    </script>
+
+</head>
+
+
+<body>
+    <nav class="navbar">
+    </nav>
+
+    <div id="main">
+        <div class="container">
+
+            <div class="header">
+                <h1 id="top"><span style="font-weight: bolder; color: #0792f6">Stage 1</span> Development</h1>
+                <h1>Introduction</h1>
+                <h2>We are currently in Stage 1 of the development with two, three- and four-bedroom houses available as turn key packages. Each house has been architecturally designed taking into what any homebuyer would be looking for affordability, open
+                    plan living with utilisation of space and maximum sun to enjoy your home both inside and out.
+                    <span id="d" style=" font-weight: bold;">We have  10 series of design plans for you to explore and choose from.</span>
+                </h2>
+
+                <h2 id="show" style="display: none;"><br>We offer 10 house design plans for you to choose from.</h2>
+                <hr>
+                <div class="intro1" data-aos="fade-down">
+                    <h2> <strong>Click on your favourite to find out more <i data-aos="fade-down" class="fas fa-sort-down"></i> </strong> </h2>
+                </div>
+
+                <!--10 MAIN DESIGNS-->
+                <div class="row">
+                    <!--Images-->
+                    <a href="architypes/fantail.html" id="site1">
+                        <div class="site" style="background-image: url(https://www.heartfoundation.org.nz/media/images/fundraising/lottery/house-gallery/l121/lottery-121-whitianga-1476_737_553_c1.png);">
+                            <div class="des" id="d1">
+                                <h4>Fantail</h4>
+                            </div>
+                            <div class='ava' id='fantail-ava'></div>
+                            <div class="spec" id="fantail-spec">
+                                Loading..
+                            </div>
+                        </div>
+                    </a>
+                    <a href="architypes/sparrow.html" id="site2">
+                        <div class="site" style="background-image: url(https://www.heartfoundation.org.nz/media/images/fundraising/lottery/house-gallery/l121/lottery-121-whitianga-1476_737_553_c1.png);">
+                            <div class="des" id="d2">
+                                <h4>Sparrow</h4>
+                            </div>
+                            <div class='ava' id='sparrow-ava'></div>
+                            <div class="spec" id="sparrow-spec">
+                                Loading..
+                            </div>
+                        </div>
+                    </a>
+                    <a href="architypes/silvereye.html" id="site3">
+                        <div class="site" style="background-image: url(https://www.heartfoundation.org.nz/media/images/fundraising/lottery/house-gallery/l121/lottery-121-whitianga-1476_737_553_c1.png);">
+                            <div class="des" id="d3">
+                                <h4>Silvereye</h4>
+                            </div>
+                            <div class='ava' id='silvereye-ava'></div>
+                            <div class="spec" id="silvereye-spec">
+                                Loading..
+                            </div>
+                        </div>
+                    </a>
+                    <a href="architypes/rosella.html" id="site1">
+                        <div class="site" style="background-image: url(https://www.heartfoundation.org.nz/media/images/fundraising/lottery/house-gallery/l121/lottery-121-whitianga-1476_737_553_c1.png);">
+                            <div class="des" id="d1">
+                                <h4>Rosella</h4>
+                            </div>
+                            <div class='ava' id='rosella-ava'></div>
+                            <div class="spec" id="rosella-spec">
+                                Loading..
+                            </div>
+                        </div>
+                    </a>
+                    <a href="architypes/kingfisher.html" id="site2">
+                        <div class="site" style="background-image: url(https://www.heartfoundation.org.nz/media/images/fundraising/lottery/house-gallery/l121/lottery-121-whitianga-1476_737_553_c1.png);">
+                            <div class="des" id="d2">
+                                <h4>Kingfisher</h4>
+                            </div>
+                            <div class='ava' id='kingfisher-ava'></div>
+                            <div class="spec" id="kingfisher-spec">
+                                Loading..
+                            </div>
+                        </div>
+                    </a>
+                    <a href="architypes/swan.html" id="site3">
+                        <div class="site" style="background-image: url(https://www.heartfoundation.org.nz/media/images/fundraising/lottery/house-gallery/l121/lottery-121-whitianga-1476_737_553_c1.png);">
+                            <div class="des" id="d3">
+                                <h4>Swan</h4>
+                            </div>
+                            <div class='ava' id='swan-ava'></div>
+                            <div class="spec" id="swan-spec">
+                                Loading..
+                            </div>
+                        </div>
+                    </a>
+                    <a href="architypes/blackbird.html" id="site1">
+                        <div class="site" style="background-image: url(https://www.heartfoundation.org.nz/media/images/fundraising/lottery/house-gallery/l121/lottery-121-whitianga-1476_737_553_c1.png);">
+                            <div class="des" id="d1">
+                                <h4>Blackbird</h4>
+                            </div>
+                            <div class='ava' id='blackbird-ava'></div>
+                            <div class="spec" id="blackbird-spec">
+                                Loading..
+                            </div>
+                        </div>
+                    </a>
+                    <a href="architypes/stitchbird.html" id="site2">
+                        <div class="site" style="background-image: url(https://www.heartfoundation.org.nz/media/images/fundraising/lottery/house-gallery/l121/lottery-121-whitianga-1476_737_553_c1.png);">
+                            <div class="des" id="d2">
+                                <h4>Stitchbird</h4>
+                            </div>
+                            <div class='ava' id='stitchbird-ava'></div>
+                            <div class="spec" id="stitchbird-spec">
+                                Loading..
+                            </div>
+                        </div>
+                    </a>
+                    <a href="architypes/robin.html" id="site3">
+                        <div class="site" style="background-image: url(https://www.heartfoundation.org.nz/media/images/fundraising/lottery/house-gallery/l121/lottery-121-whitianga-1476_737_553_c1.png);">
+                            <div class="des" id="d3">
+                                <h4>Robin</h4>
+                            </div>
+                            <div class='ava' id='robin-ava'></div>
+                            <div class="spec" id="robin-spec">
+                                Loading..
+                            </div>
+                        </div>
+                    </a>
+                    <a href="architypes/fernbird.html" id="site3">
+                        <div class="site" style="background-image: url(https://www.heartfoundation.org.nz/media/images/fundraising/lottery/house-gallery/l121/lottery-121-whitianga-1476_737_553_c1.png);">
+                            <div class="des" id="d3">
+                                <h4>Fernbird</h4>
+                            </div>
+                            <div class='ava' id='fernbird-ava'></div>
+                            <div class="spec" id="fernbird-spec">
+                                Loading..
+                            </div>
+                        </div>
+                    </a>
+                    <br>
+                    <hr>
+                </div>
+
+
+
+
+                <div class="row2" data-aos="fade-down">
+                    <h3 style="font-weight: normal; ">
+                        Overall Becondale site and lots. Click on it to learn more details.
+                    </h3>
+                    <i data-aos="fade-down" class="fas fa-sort-down" style="font-size: 3rem;"></i>
+                </div>
+
+
+
+                <div class="row3">
+                    <h1>Interactive Map</h1>
+
+                    <iframe id="iframe" width="100%" height="620px" src="Lv2_mobile/index.html"></iframe>
+                </div>
+
+
+                <div class="row3">
+                    <h1 id="lot-details">Lot Details</h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Lot #</th>
+                                <th>Availability</th>
+                                <th>Framing Area (m<sup>2</sup>)</th>
+                                <th>Pricing ($)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tbody class="labels">
+                                <tr>
+                                    <td colspan="4">
+                                        <label for="fantail">Fantail &ensp; <p id="fantail-table-ava"></p> <i id="arrow" data-aos="fade-down" class="fas fa-sort-down" style="font-size: 2rem;"></i></label>
+                                        <input type="checkbox" name="fantail" id="fantail" data-toggle="toggle">
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody class="hide" id="fantail-content">
+                            </tbody>
+
+                            <tbody class="labels">
+                                <tr>
+                                    <td colspan="4">
+                                        <label for="sparrow">Sparrow &ensp; <p id="sparrow-table-ava"></p>  <i id="arrow" class="fas fa-sort-down" style="font-size: 2rem;"></i></label>
+                                        <input type="checkbox" name="sparrow" id="sparrow" data-toggle="toggle">
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody class="hide" id="sparrow-content">
+                            </tbody>
+
+                            <tbody class="labels">
+                                <tr>
+                                    <td colspan="4">
+                                        <label for="silvereye"> Silvereye &ensp; <p id="silvereye-table-ava"></p>  <i id="arrow" class="fas fa-sort-down" style="font-size: 2rem;"></i></label>
+                                        <input type="checkbox" name="silvereye" id="silvereye" data-toggle="toggle">
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody class="hide" id="silvereye-content">
+                            </tbody>
+
+                            <tbody class="labels">
+                                <tr>
+                                    <td colspan="4">
+                                        <label for="rosella"> Rosella &ensp; <p id="rosella-table-ava"></p>  <i id="arrow" class="fas fa-sort-down" style="font-size: 2rem;"></i></label>
+                                        <input type="checkbox" name="rosella" id="rosella" data-toggle="toggle">
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody class="hide" id="rosella-content">
+                            </tbody>
+
+                            <tbody class="labels">
+                                <tr>
+                                    <td colspan="4">
+                                        <label for="kingfisher"> Kingfisher &ensp; <p id="kingfisher-table-ava"></p>   <i id="arrow" class="fas fa-sort-down" style="font-size: 2rem;"></i></label>
+                                        <input type="checkbox" name="kingfisher" id="kingfisher" data-toggle="toggle">
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody class="hide" id="kingfisher-content">
+                            </tbody>
+
+                            <tbody class="labels">
+                                <tr>
+                                    <td colspan="4">
+                                        <label for="swan"> Swan &ensp; <p id="swan-table-ava"></p>  <i id="arrow" class="fas fa-sort-down" style="font-size: 2rem;"></i></label>
+                                        <input type="checkbox" name="swan" id="swan" data-toggle="toggle">
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody class="hide" id="swan-content">
+                            </tbody>
+
+                            <tbody class="labels">
+                                <tr>
+                                    <td colspan="4">
+                                        <label for="blackbird"> Blackbird &ensp; <p id="blackbird-table-ava"></p>  <i id="arrow" class="fas fa-sort-down" style="font-size: 2rem;"></i></label>
+                                        <input type="checkbox" name="blackbird" id="blackbird" data-toggle="toggle">
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody class="hide" id="blackbird-content">
+                            </tbody>
+
+                            <tbody class="labels">
+                                <tr>
+                                    <td colspan="4">
+                                        <label for="stitchbird"> Stitchbird &ensp; <p id="stitchbird-table-ava"></p>   <i id="arrow" class="fas fa-sort-down" style="font-size: 2rem;"></i></label>
+                                        <input type="checkbox" name="stitchbird" id="stitchbird" data-toggle="toggle">
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody class="hide" id="stitchbird-content">
+                            </tbody>
+
+                            <tbody class="labels">
+                                <tr>
+                                    <td colspan="4">
+                                        <label for="robin"> Robin &ensp; <p id="robin-table-ava"></p>  <i id="arrow" class="fas fa-sort-down" style="font-size: 2rem;"></i></label>
+                                        <input type="checkbox" name="robin" id="robin" data-toggle="toggle">
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody class="hide" id="robin-content">
+                            </tbody>
+
+                            <tbody class="labels">
+                                <tr>
+                                    <td colspan="4">
+                                        <label for="fernbird"> Fernbird &ensp; <p id="fernbird-table-ava"></p>  <i id="arrow" class="fas fa-sort-down" style="font-size: 2rem;"></i></label>
+                                        <input type="checkbox" name="fernbird" id="fernbird" data-toggle="toggle">
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody class="hide" id="fernbird-content">
+                            </tbody>
+                        </tbody>
+                    </table>
+
+
+
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--FOOTER & BACK TO HOME-->
+    <div class="f">
+    </div>
+
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
+    <script type='text/javascript'>
+        var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/103DrfOmUQewiVXpvmGZmM37GIuEZk2FYx8i_rxR7Msk/edit?usp=sharing';
+
+        function init() {
+            Tabletop.init({
+                key: publicSpreadsheetUrl,
+                callback: showInfo,
+                simpleSheet: true
+            })
+        }
+
+        function showInfo(data, tabletop) {
+            //alert('Successfully processed!')
+            console.log(data);
+
+            const types = ['Fantail', 'Sparrow', 'Silvereye', 'Rosella', 'Kingfisher', 'Swan', 'Blackbird', 'Stitchbird', 'Robin', 'Fernbird'];
+            var count = []; // TO STORE THE COUNTED TOTAL AVAILABLE LOTS FOR EACH TYPE
+            //Counts for each type's availability
+            types.forEach(function(tp) {
+                var count_for_each_type = 0;
+                data.forEach(function(row) {
+                    if (row.TYPOLOGY == tp && row.AVA == 1) {
+                        count_for_each_type++;
+                    }
+                })
+                count.push(count_for_each_type);
+            })
+            console.log(count);
+
+
+
+            //Putting summed results onto typology display (on-hover)
+            const types_lower = ['fantail', 'sparrow', 'silvereye', 'rosella', 'kingfisher', 'swan', 'blackbird', 'stitchbird', 'robin', 'fernbird'];
+
+            for (i = 0; i < 10; i++) {
+                document.getElementById(types_lower[i] + '-ava').innerHTML = count[i] + ' Available';
+            }
+
+
+            //Inserting House Specification (Lounge| Bed| Bath| Garage)
+            data.forEach(function(r) {
+                for (i = 0; i < 10; i++) {
+                    if (r.TYPOLOGY == types[i]) {
+                        document.getElementById(types_lower[i] + '-spec').innerHTML = '<p>' + r.LOUNGE + ' <i class="fas fa-couch"></i></p><p>' + r.BED + ' <i class="fas fa-bed"></i></p><p>' + r.BATH + ' <i class="fas fa-bath"></i></p><p>' + r.GARAGE + ' <i class="fas fa-car"></i></p>';
+                    }
+                }
+            });
+
+
+            //Stage 1 Section List- Lot List
+            data.forEach(function(r) {
+                switch (r.TYPOLOGY) {
+                    case 'Fantail':
+                        display('fantail');
+                        break;
+                    case 'Sparrow':
+                        display('sparrow');
+                        break;
+                    case 'Silvereye':
+                        display('silvereye');
+                        break;
+                    case 'Rosella':
+                        display('rosella');
+                        break;
+                    case 'Kingfisher':
+                        display('kingfisher');
+                        break;
+                    case 'Swan':
+                        display('swan');
+                        break;
+                    case 'Blackbird':
+                        display('blackbird');
+                        break;
+                    case 'Stitchbird':
+                        display('stitchbird');
+                        break;
+                    case 'Robin':
+                        display('robin');
+                        break;
+                    case 'Fernbird':
+                        display('fernbird');
+                        break;
+                }
+
+                function display(type) {
+                    var tbody = document.getElementById(type + '-content');
+                    var row = document.createElement("tr");
+                    var col1 = document.createElement("td");
+                    col1.textContent = r.LOT;
+                    var col2 = document.createElement("td");
+                    if (r.AVA == 1) {
+                        col2.textContent = 'Available';
+                        col2.style.color = 'green';
+                    }
+                    if (r.AVA == 0) {
+                        col2.textContent = 'Sold Out';
+                        col2.style.color = 'red';
+                    }
+                    var col3 = document.createElement("td");
+                    col3.textContent = r.AREA;
+                    var col4 = document.createElement("td");
+                    col4.textContent = r.PRICE;
+                    row.appendChild(col1);
+                    row.appendChild(col2);
+                    row.appendChild(col3);
+                    row.appendChild(col4);
+                    tbody.appendChild(row);
+                }
+
+            });
+
+
+            //Available lots for table
+            for (i = 0; i < 10; i++) {
+                document.getElementById(types_lower[i] + '-table-ava').innerHTML = count[i] + ' Available';
+            }
+
+        }
+
+        window.addEventListener('DOMContentLoaded', init)
+    </script>
+
+
+
+    <script>
+        $(document).ready(function() {
+            $('[data-toggle="toggle"]').change(function() {
+                $(this).parents().next('.hide').toggle();
+            });
+        });
+
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE ");
+        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+            // If Internet Explorer, return version number
+            alert('IE');
+            document.getElementsByClassName('spec').style.display = 'none';
+        } else {
+            console.log('normal');
+        }
+    </script>
+
+
+
+    <script src="js/main.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>

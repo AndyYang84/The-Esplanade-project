@@ -1,0 +1,131 @@
+.container {
+    line-height: 45px !important;
+}
+
+#envelope {
+    line-height: normal !important;
+    padding: 5px 15px !important;
+}
+
+#top {
+    margin-bottom: 0.5rem;
+    color: rgb(39, 57, 66);
+    font-size: 3rem;
+}
+
+.block h2 {
+    font-weight: normal;
+}
+
+h1 {
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+h2 {
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    font-weight: normal;
+    font-size: 1.35rem;
+}
+
+h3 {
+    font-weight: normal
+}
+
+#t {
+    /*Unordered list properties*/
+    margin-left: 20px;
+    margin-bottom: 5rem;
+}
+
+.block {
+    text-align: left;
+    margin-bottom: 3rem;
+}
+
+.item {
+    font-weight: bold;
+    padding: 10px;
+    color: #F4F4F4;
+    background-color: #0792f6;
+    box-shadow: 1px 2px 5px rgb(39, 57, 66);
+}
+
+.card {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 1.5rem;
+}
+
+.card h3 {
+    margin-top: 2rem;
+}
+
+.card:nth-child(even) {
+    grid-template-columns: 2fr 1fr;
+}
+
+.card:nth-child(even) img {
+    order: 1;
+}
+
+.static-map-div {
+    margin-top: 1.5rem;
+}
+
+#static-map {
+    margin-top: 10px;
+}
+
+#static-map:hover {
+    width: 100%;
+}
+
+
+/*視窗大小轉換與圖示大小改變*/
+
+@media(max-width: 668px) {
+    .navbar-nav {
+        display: none
+    }
+    .container {
+        padding: 0 0.1rem;
+    }
+    #top {
+        font-size: 2.6rem;
+    }
+}
+
+@media(min-width: 950px) {
+    .open-slide {
+        display: none
+    }
+}
+
+
+/*for ipad*/
+
+@media(max-width: 950px) {
+    .navbar-nav {
+        display: none;
+    }
+}
+
+@media(max-width: 500px) {
+    #top {
+        font-size: 2.2rem;
+    }
+}
+
+@media(max-width: 668px) {
+    .card {
+        display: block;
+    }
+    .card img {
+        height: auto;
+    }
+    .card h3 {
+        margin-top: 5px;
+    }
+}

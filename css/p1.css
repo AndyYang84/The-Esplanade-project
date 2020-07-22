@@ -1,0 +1,324 @@
+h1 {
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    font-weight: normal;
+}
+
+.header {
+    margin: 1.2rem 0;
+    text-align: left;
+    margin-bottom: 1.3rem;
+}
+
+#top {
+    margin-bottom: 0.5rem;
+    color: rgb(39, 57, 66);
+    font-size: 3rem;
+}
+
+.header h2 {
+    font-weight: normal;
+    text-align: justify;
+}
+
+.intro1 {
+    background-color: #0792f6d7;
+    color: white;
+    padding: 2px 5px;
+}
+
+.intro1 h2 {
+    font-weight: normal;
+    text-align: center;
+}
+
+.fa-sort-down {
+    font-size: 2.5rem;
+}
+
+.row2 {
+    margin-top: 1.2rem !important;
+    margin-bottom: 1.3rem;
+    text-align: center;
+    background-color: #0792f6d7;
+    color: white;
+    padding: 10px;
+}
+
+.row3 {
+    text-align: left;
+}
+
+#lot-details {
+    margin-bottom: -3rem;
+}
+
+.row {
+    overflow: hidden;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.row a {
+    text-decoration: none;
+}
+
+.row .site {
+    position: relative !important;
+    /*use with .spec pos: abs& bottom:0 to fix the position*/
+    height: 310px;
+    width: 24%;
+    display: inline-block;
+    text-align: center;
+    margin-left: 3px;
+    background-size: 100% 100%;
+}
+
+.site:hover .ava {
+    display: block;
+}
+
+
+/*******Collapsible Table******/
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 50px auto;
+}
+
+th {
+    background: #3498db;
+    color: white;
+    font-weight: bold;
+}
+
+td,
+th {
+    padding: 5px;
+    border: 1px solid #ccc;
+    text-align: left;
+    font-size: 18px;
+}
+
+.labels tr td {
+    background-color: #2cc16a;
+    font-weight: bold;
+    color: #fff;
+    font-size: larger;
+}
+
+#arrow {
+    float: right;
+    margin-right: 1rem;
+}
+
+.hide tr td {
+    color: #333;
+}
+
+.hide tr td:first-child {
+    width: 12%;
+    font: larger;
+    font-weight: bolder;
+    background-color: rgba(211, 211, 211, 0.342);
+    text-align: center;
+}
+
+#arrow:hover {
+    color: yellow;
+    font-size: larger;
+}
+
+tr td:hover {
+    font-size: larger;
+}
+
+td label:hover {
+    font-size: larger;
+}
+
+.label tr td label {
+    display: block;
+}
+
+label p {
+    color: rgb(112, 114, 243);
+    float: right;
+    background: linear-gradient(to right, white, rgb(234, 241, 250), rgb(215, 231, 253));
+    border-radius: 15px;
+    padding: 2px 15px;
+}
+
+[data-toggle="toggle"] {
+    display: none;
+}
+
+
+/**************** Media Queries  (Need to re-visit)*/
+
+@media screen and (max-width: 950px) {
+    .row .site {
+        width: 100%;
+        height: 480px
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .row .site {
+        width: 100%;
+        height: 420px
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .row .site {
+        width: 100%;
+        height: 310px
+    }
+}
+
+@media screen and (max-width: 668px) {
+    .row .site {
+        width: 100%;
+        height: 300px
+    }
+}
+
+.row .site .des {
+    height: auto;
+    width: 100%;
+    float: left;
+    background-color: #333;
+    color: #F4F4F4;
+    font-size: 1.5rem;
+}
+
+.row .site .spec {
+    /*specifications: bedroom | bathroom | garage */
+    background-color: rgb(7, 146, 246);
+    color: white;
+    font-size: 18px;
+    padding-top: 8px;
+    font-weight: bold;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.ava {
+    /*ava: Availibity */
+    background-color: rgba(29, 46, 58, 0.699);
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    padding-top: 8px;
+    font-weight: bold;
+    width: 100%;
+    position: absolute;
+    bottom: 46px;
+    display: none;
+}
+
+.site:hover .fas {
+    font-size: 32px;
+}
+
+.row .site h4 {
+    color: white;
+}
+
+
+/*stage2 css*/
+
+.intro {
+    width: 100%;
+    height: 680px;
+    margin: auto;
+    background: url("../images/home1.jpg") no-repeat 50% 50%;
+    display: table;
+    top: 0;
+    background-size: cover;
+    margin-top: -20px;
+}
+
+.intro .inner {
+    display: table-cell;
+    vertical-align: -45px;
+    width: 100%;
+    max-width: none;
+}
+
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.intro .inner .content h1 {
+    margin-bottom: 0;
+    margin-top: 1rem;
+    color: #f4f4f4;
+    font-size: 5.5rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgb(39, 57, 66);
+}
+
+@media(max-width: 1000px) {
+    .ava {
+        display: block;
+    }
+}
+
+@media(max-width: 668px) {
+    .navbar-nav {
+        display: none
+    }
+    #top {
+        font-size: 2rem !important;
+    }
+    .container {
+        padding: 0 0.1rem;
+    }
+    .intro1 h2 {
+        font-size: 1rem;
+        font-weight: normal;
+    }
+    #iframe {
+        height: 350px;
+    }
+    #show {
+        display: block !important
+    }
+    #d {
+        display: none !important;
+    }
+}
+
+@media(min-width: 950px) {
+    .open-slide {
+        display: none
+    }
+}
+
+
+/*for ipad*/
+
+@media(max-width: 950px) {
+    .navbar-nav {
+        display: none;
+    }
+}
+
+@media (max-width: 500px) {
+    #top {
+        font-size: 1.72rem !important
+    }
+}
